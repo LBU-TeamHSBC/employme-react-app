@@ -15,7 +15,7 @@ export function OverviewCard(props) {
                 <i className="fa fa-rocket"></i>
               </div>
               <div className="stat">
-                <div className="value"> 5407 </div>
+                <div className="value"> { props.score } </div>
                 <div className="name"> Score </div>
               </div>
               <div className="progress stat-progress">
@@ -27,7 +27,7 @@ export function OverviewCard(props) {
                 <i className="fa fa-shopping-cart"></i>
               </div>
               <div className="stat">
-                <div className="value"> 7 </div>
+                <div className="value"> { props.matched_companies } </div>
                 <div className="name"> Matched Companies </div>
               </div>
               <div className="progress stat-progress">
@@ -39,7 +39,7 @@ export function OverviewCard(props) {
                 <i className="fa fa-line-chart"></i>
               </div>
               <div className="stat">
-                <div className="value"> 14 </div>
+                <div className="value"> { props.courses_completed } </div>
                 <div className="name"> Completed Courses </div>
               </div>
               <div className="progress stat-progress">
@@ -51,7 +51,7 @@ export function OverviewCard(props) {
                 <i className="fa fa-users"></i>
               </div>
               <div className="stat">
-                <div className="value"> 3 </div>
+                <div className="value"> { props.courses_in_progress } </div>
                 <div className="name"> In Progress Courses </div>
               </div>
               <div className="progress stat-progress">
@@ -63,7 +63,7 @@ export function OverviewCard(props) {
                 <i className="fa fa-list-alt"></i>
               </div>
               <div className="stat">
-                <div className="value"> 2 </div>
+                <div className="value"> { props.job_offers } </div>
                 <div className="name"> Job Offers </div>
               </div>
               <div className="progress stat-progress">
@@ -75,7 +75,7 @@ export function OverviewCard(props) {
                 <i className="fa fa-dollar"></i>
               </div>
               <div className="stat">
-                <div className="value"> 18 </div>
+                <div className="value"> { props.jobs_applied } </div>
                 <div className="name"> Jobs Applied </div>
               </div>
               <div className="progress stat-progress">

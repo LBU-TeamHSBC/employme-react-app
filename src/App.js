@@ -12,13 +12,7 @@ class App extends Component {
         <div className="app" id="app">
           <Header />
           <SideBar />
-
-          <div className="sidebar-overlay" id="sidebar-overlay"></div>
-          <div className="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
-          <div className="mobile-menu-handle"></div>
-
           <Dashboard />
-
         </div>
       </div>
     );
