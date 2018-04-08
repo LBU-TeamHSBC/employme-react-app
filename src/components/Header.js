@@ -46,18 +46,18 @@ export function Header(props) {
             </div>
           </li>
           <li className="profile dropdown">
-            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="/#" role="button" aria-haspopup="true" aria-expanded="false">
               <div className="img" style={{
                 backgroundImage: "url('https://avatars3.githubusercontent.com/u/3959008?v=3&amp;s=40')"}}>
               </div>
               <span className="name"> John Doe </span>
             </a>
             <div className="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/#">
                 <i className="fa fa-user icon"></i> Profile </a>
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/#">
                 <i className="fa fa-bell icon"></i> Notifications </a>
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="/#">
                 <i className="fa fa-gear icon"></i> Settings </a>
               <div className="dropdown-divider"></div>
               <a className="dropdown-item" href="/">
