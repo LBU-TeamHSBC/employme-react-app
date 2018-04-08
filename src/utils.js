@@ -1,4 +1,4 @@
-export function postData(userData) {
+export function loginUser(userData) {
   let BASE_URL = 'http://localhost:3001/api/login/';
 
   return new Promise((resolve, reject) => {

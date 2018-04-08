@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
-import { postData } from '../utils';
+import { loginUser } from '../utils';
 
 export class Login extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ export class Login extends Component {
   }
 
   responseGoogle = (res) => {
-    postData({ tokenId: res.tokenId })
+    loginUser({ tokenId: res.tokenId })
       .then(res => {
         if (res.result === 'OK') {
           sessionStorage.setItem("userData", JSON.stringify(res.userData));
