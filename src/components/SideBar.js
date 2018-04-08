@@ -14,14 +14,14 @@ export const SideBar = (props) => (
           <li className="active">
             <Link to="/dashboard"><i className="fa fa-home"></i>Dashboard</Link>
           </li>
-          <li className="">
-            <Link to="/"><i className="fa fa-sign-out"></i>Logout</Link>
-          </li>
         </ul>
       </nav>
     </div>
     <footer className="sidebar-footer">
       <ul className="sidebar-menu metismenu" id="customize-menu">
+        <li className="">
+          <Link to="/"><i className="fa fa-sign-out"></i>Logout</Link>
+        </li>
       </ul>
     </footer>
   </aside>
