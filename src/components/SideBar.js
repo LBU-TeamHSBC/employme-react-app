@@ -11,8 +11,11 @@ export const SideBar = (props) => (
       </div>
       <nav className="menu">
         <ul className="sidebar-menu metismenu" id="sidebar-menu">
+          <li>
+            <Link to="/"><i className="fa fa-home"></i>Home</Link>
+          </li>
           <li className="active">
-            <Link to="/dashboard"><i className="fa fa-home"></i>Dashboard</Link>
+            <Link to="/dashboard"><i className="fa fa-id-card"></i>Dashboard</Link>
           </li>
         </ul>
       </nav>
@@ -20,7 +23,7 @@ export const SideBar = (props) => (
     <footer className="sidebar-footer">
       <ul className="sidebar-menu metismenu" id="customize-menu">
         <li className="">
-          <Link to="/"><i className="fa fa-sign-out"></i>Logout</Link>
+          <Link to="/logout"><i className="fa fa-sign-out"></i>Logout</Link>
         </li>
       </ul>
     </footer>

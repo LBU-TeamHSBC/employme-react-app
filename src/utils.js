@@ -1,8 +1,11 @@
 export function postData(userData) {
-  let BASE_URL = 'http://localhost:3080/login/';
+  let BASE_URL = 'http://localhost:3001/api/login/';
 
   return new Promise((resolve, reject) => {
     fetch(BASE_URL, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
       method: 'POST',
       body: JSON.stringify(userData)
     })

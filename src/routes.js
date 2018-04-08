@@ -8,8 +8,9 @@ import { NotFound } from './components/NotFound';
 import { Header } from './components/Header';
 import { SideBar } from './components/SideBar';
 import { Login } from './components/Login';
+import { Logout } from './components/Logout';
 
-
+// TODO - sort out hiding of Header & SideBar!
 const Routes = (props) => (
   <BrowserRouter >
     <div>
@@ -19,6 +20,7 @@ const Routes = (props) => (
         <Route exact path="/" component={ Home }/>
         <Route exact path="/dashboard" component={ Dashboard }/>
         <Route path="/login" component={ Login }/>
+        <Route path="/logout" component={ Logout }/>
         {/* <Route path="/signup" component={ Signup }/> */}
         <Route path="*" component={ NotFound }/>
       </Switch>
