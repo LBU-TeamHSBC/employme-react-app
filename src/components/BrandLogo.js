@@ -10,6 +10,6 @@ export function BrandLogo(props) {
           <span className="l l4"></span>
           <span className="l l5"></span>
       </div>
-      {props.site_name}
+      EmployME
     </div>);
 }

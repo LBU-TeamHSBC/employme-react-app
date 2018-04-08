@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'
 
 import { EnrolledCard } from './EnrolledCard';
 import { OverviewCard } from './OverviewCard';
@@ -14,6 +15,10 @@ export function Dashboard(props) {
     job_offers:2,
     jobs_applied:18
   };
+
+  if (!sessionStorage.getItem('userData')) {
+    return <Redirect to={'/login'} />;
+  }
   
   return (
     <article className="content dashboard-page">
