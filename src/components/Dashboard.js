@@ -16,7 +16,7 @@ export function Dashboard(props) {
     jobs_applied:18
   };
 
-  if (!sessionStorage.getItem('userData')) {
+  if (!sessionStorage.getItem('token')) {
     return <Redirect to={'/login'} />;
   }
   

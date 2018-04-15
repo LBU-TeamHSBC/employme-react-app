@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export function Home(props) {
   return (
     <div className="content">
-      <Link to="/login">---- LOGIN ----</Link>
+      <Link to="/login">---- Login / Sign-up ----</Link>
       <hr />
       <p style={{width: "600px", textAlign: "justify"}}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quam eros,
