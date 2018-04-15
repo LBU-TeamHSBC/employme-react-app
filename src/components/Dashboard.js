@@ -1,12 +1,14 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
 
 import { EnrolledCard } from './EnrolledCard';
 import { OverviewCard } from './OverviewCard';
 import { ScoreCard } from './ScoreCard';
 import { TopSkillsCard } from './TopSkillsCard';
 
-export function Dashboard(props) {
+function _Dashboard(props) {
+  const { isLoggedIn } = props;
   const dummy_overview_data = {
     score:3247,
     matched_companies:7,
@@ -16,7 +18,8 @@ export function Dashboard(props) {
     jobs_applied:18
   };
 
-  if (!sessionStorage.getItem('token')) {
+  // if (!sessionStorage.getItem('token')) {
+  if (!isLoggedIn) {
     return <Redirect to={'/login'} />;
   }
   
@@ -37,3 +40,7 @@ export function Dashboard(props) {
     </article>
   );
 }
+
+const mapStateToProps = ({ isLoggedIn }) => ({ isLoggedIn });
+
+export const Dashboard = connect(mapStateToProps)(_Dashboard);

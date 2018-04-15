@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 
 import { Home } from './components/Home';
 import { Dashboard } from './components/Dashboard';
@@ -14,8 +14,8 @@ import { Logout } from './components/Logout';
 const Routes = (props) => (
   <BrowserRouter >
     <div>
-      <Header />
-      <SideBar />
+      { props.isLoggedIn && <Header /> }
+      { props.isLoggedIn && <SideBar /> }
       <Switch>
         <Route exact path="/" component={ Home }/>
         <Route exact path="/dashboard" component={ Dashboard }/>
@@ -28,4 +28,6 @@ const Routes = (props) => (
   </BrowserRouter>
 );
 
-export default Routes;
+const mapStateToProps = ({ isLoggedIn }) => ({ isLoggedIn });
+
+export default connect(mapStateToProps)(Routes);

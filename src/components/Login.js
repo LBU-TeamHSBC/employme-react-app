@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { isLoggedIn } from '../actions';
 import { GoogleLogin } from 'react-google-login';
 import { loginUser } from '../utils';
 import { login_status } from '../apiCodes';
 
-export class Login extends Component {
+class _Login extends Component {
   constructor(props) {
     super(props);
     this.clientId = "423585579744-ttjtm640ml2fbust2oun8b0de6738f71.apps.googleusercontent.com";
     this.state = {
       redirect: false,
       login_error: false
-      // signup: false
     };
   }
 
@@ -20,14 +21,9 @@ export class Login extends Component {
       .then(res => {
         if (res.result === login_status.LOGGED_IN) {
           sessionStorage.setItem('token', JSON.stringify(res.token));
-          this.setState({
-            redirect: true,
-            login_error: false
-          });
-        // } else if (res.result === 'SIGNUP') {
-        //   this.setState({ redirect: false, signup: true })
+          this.props.dispatch(isLoggedIn(true));
         } else {
-          this.setState({ login_error: true });
+          this.props.dispatch(isLoggedIn(false));
         }
       })
       .catch(err => {
@@ -37,7 +33,7 @@ export class Login extends Component {
   };
 
   render() {
-    if (this.state.redirect || sessionStorage.getItem('token')) {
+    if (this.props.isLoggedIn) { // || sessionStorage.getItem('token')
       return (<Redirect to={'/dashboard'} />)
     }
     return (
@@ -52,3 +48,7 @@ export class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ isLoggedIn }) => ({ isLoggedIn });
+
+export const Login = connect(mapStateToProps)(_Login);
