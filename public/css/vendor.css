@@ -11913,9 +11913,10 @@ button.close {
   bottom: 0;
   left: 0;
   z-index: 1050;
-  display: none;
+  /* display: none; */
   overflow: hidden;
   outline: 0;
+  background: #000000AA;
 }
 
 .modal.fade .modal-dialog {

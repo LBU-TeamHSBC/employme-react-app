@@ -2,7 +2,7 @@ import React from 'react';
 
 export function ConfirmDialog(props) {
   return (
-    <div className="modal fade" id="confirm-modal">
+    <div className="modal" id="confirm-modal">
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
