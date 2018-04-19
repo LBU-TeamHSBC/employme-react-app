@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export function Header(props) {
+function _Header({ user }) {
   return (
     <header className="header">
       <div className="header-block header-block-collapse d-lg-none d-xl-none">
@@ -50,7 +51,7 @@ export function Header(props) {
               <div className="img" style={{
                 backgroundImage: "url('https://avatars3.githubusercontent.com/u/3959008?v=3&amp;s=40')"}}>
               </div>
-              <span className="name"> John Doe </span>
+              <span className="name"> {user.username} </span>
             </a>
             <div className="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
               <a className="dropdown-item" href="/#">
@@ -69,3 +70,7 @@ export function Header(props) {
     </header>
   );
 }
+
+const mapStateToProps = ({ user }) => ({ user });
+
+export const Header = connect(mapStateToProps)(_Header);
