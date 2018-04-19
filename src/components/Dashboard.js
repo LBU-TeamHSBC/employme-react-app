@@ -8,7 +8,7 @@ import { ScoreCard } from './ScoreCard';
 import { TopSkillsCard } from './TopSkillsCard';
 
 function _Dashboard(props) {
-  const { isLoggedIn } = props;
+  const { user } = props;
   const dummy_overview_data = {
     score:3247,
     matched_companies:7,
@@ -18,8 +18,7 @@ function _Dashboard(props) {
     jobs_applied:18
   };
 
-  // if (!sessionStorage.getItem('token')) {
-  if (!isLoggedIn) {
+  if (!user.isLoggedIn) {
     return <Redirect to={'/login'} />;
   }
   
@@ -41,6 +40,6 @@ function _Dashboard(props) {
   );
 }
 
-const mapStateToProps = ({ isLoggedIn }) => ({ isLoggedIn });
+const mapStateToProps = ({ user }) => ({ user });
 
 export const Dashboard = connect(mapStateToProps)(_Dashboard);

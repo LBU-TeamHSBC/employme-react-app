@@ -1,12 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { isLoggedIn } from '../actions';
+import { saveLoginState } from '../actions';
 
-function _Logout({ dispatch }) {
-  dispatch(isLoggedIn(false));
-  sessionStorage.removeItem('token');
+function _Logout({ saveLoginState }) {
+  saveLoginState();
   return <Redirect to={'/'} />;
 }
 
-export const Logout = connect()(_Logout);
+const mapDispatchToProps = { saveLoginState };
+export const Logout = connect(null, mapDispatchToProps)(_Logout);

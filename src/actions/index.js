@@ -1,7 +1,14 @@
-export const isLoggedIn = loggedIn => {
-  if (loggedIn) {
-    return { type: 'IS_LOGGED_IN' };
-  } else {
-    return { type: 'IS_NOT_LOGGED_IN' };
+export const saveLoginState = state => {
+  if (!state) {
+    return { type: 'CLEAR_LOGIN_STATE' };
   }
-};
+  return {
+    type: 'SET_LOGIN_STATE',
+    data: {
+      uid: state.uid,
+      email: state.email,
+      username: state.username,
+      token: state.token
+    }
+  };
+}

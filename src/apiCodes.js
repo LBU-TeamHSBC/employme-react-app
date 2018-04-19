@@ -1,4 +1,4 @@
-export const login_status = {
+export const loginStatusCode = {
   NOT_LOGGED_IN: 0,
   LOGGED_IN: 1,
   SIGNUP_REQUIRED: 2,
@@ -7,4 +7,4 @@ export const login_status = {
   UNKNOWN_ERROR: 999
 };
 
-export default { login_status };
+export default { loginStatusCode };

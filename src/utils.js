@@ -1,8 +1,8 @@
-export function loginUser(userData) {
-  let BASE_URL = 'http://localhost:3001/api/login/';
+import config from "./config";
 
+export function loginUser(userData) {
   return new Promise((resolve, reject) => {
-    fetch(BASE_URL, {
+    fetch(config.apiUrl.login, {
       headers: {
         'Content-Type': 'application/json'
       },

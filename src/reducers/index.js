@@ -1,25 +1,21 @@
 import { combineReducers } from 'redux';
 
-const getDefaultState = _ => {
-  if (sessionStorage.getItem('token')) {
-    return true;
-  }
-  return false;
-}
-
-const isLoggedIn = (state=getDefaultState(), action) => {
+const user = (state={ isLoggedIn: false }, action) => {
   switch(action.type) {
-    case 'IS_LOGGED_IN':
-      return true;
-    case 'IS_NOT_LOGGED_IN':
-      return false;
+    case 'CLEAR_LOGIN_STATE':
+      return { isLoggedIn: false };
+    case 'SET_LOGIN_STATE':
+      return {
+        ...action.data,
+        isLoggedIn: true
+      };
     default:
       return state;
   }
 };
 
 const reducer = combineReducers({
-  isLoggedIn
+  user
 });
 
 export default reducer;

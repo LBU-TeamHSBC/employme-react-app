@@ -10,12 +10,11 @@ import { SideBar } from './components/SideBar';
 import { Login } from './components/Login';
 import { Logout } from './components/Logout';
 
-// TODO - sort out hiding of Header & SideBar!
-const Routes = (props) => (
+const Routes = ({ user }) => (
   <BrowserRouter >
     <div>
-      { props.isLoggedIn && <Header /> }
-      { props.isLoggedIn && <SideBar /> }
+      { user.isLoggedIn && <Header /> }
+      { user.isLoggedIn && <SideBar /> }
       <Switch>
         <Route exact path="/" component={ Home }/>
         <Route exact path="/dashboard" component={ Dashboard }/>
@@ -28,6 +27,6 @@ const Routes = (props) => (
   </BrowserRouter>
 );
 
-const mapStateToProps = ({ isLoggedIn }) => ({ isLoggedIn });
+const mapStateToProps = ({ user }) => ({ user });
 
 export default connect(mapStateToProps)(Routes);
