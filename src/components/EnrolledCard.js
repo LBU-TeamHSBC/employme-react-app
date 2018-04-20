@@ -6,9 +6,36 @@ class _EnrolledCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showAddDialog: false
+      showAddDialog: false,
+      isLoading: true,
+      enrolments: []
     };
   }
+
+  componentDidMount() {
+    this.updateEnrolmentList();
+  }
+
+  updateEnrolmentList = _ => {
+    const enrolments = [];
+    {/* {{!--
+    <label className="search">
+        <input className="search-input" placeholder="search...">
+        <i className="fa fa-search search-icon"></i>
+    </label>
+    <div className="pagination">
+        <a href="" className="btn btn-primary btn-sm">
+            <i className="fa fa-angle-up"></i>
+        </a>
+        <a href="" className="btn btn-primary btn-sm">
+            <i className="fa fa-angle-down"></i>
+        </a>
+    </div> --}} */}
+    this.setState({
+      enrolments,
+      isLoading: false
+    });
+  };
 
   linkNewAccount = _ => {
     this.setState({ showAddDialog: true });
@@ -19,6 +46,7 @@ class _EnrolledCard extends Component {
   };
 
   render() {
+    const { enrolments } = this.state;
     return (
       <div className="col-xl-8">
         <div className="card sameheight-item items" data-exclude="xs,sm,lg" style={{ height: "400px" }}>
@@ -30,19 +58,7 @@ class _EnrolledCard extends Component {
               <button
                 onClick={this.linkNewAccount}
                 className="btn btn-primary btn-sm"> Add new </button>
-              {/* {{!--
-              <label className="search">
-                  <input className="search-input" placeholder="search...">
-                  <i className="fa fa-search search-icon"></i>
-              </label>
-              <div className="pagination">
-                  <a href="" className="btn btn-primary btn-sm">
-                      <i className="fa fa-angle-up"></i>
-                  </a>
-                  <a href="" className="btn btn-primary btn-sm">
-                      <i className="fa fa-angle-down"></i>
-                  </a>
-              </div> --}} */}
+                {enrolments}
             </div>
           </div>
           <ul className="item-list striped">

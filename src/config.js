@@ -3,7 +3,8 @@ const config = {
     apiUrl: {
         login: "http://localhost:3001/api/login/",
         vendors: "http://localhost:3001/api/vendors/",
-        accountLink: "http://localhost:3001/api/link/"
+        accountLink: "http://localhost:3001/api/link/",
+        enrolmentsLink: "http://localhost:3001/api/enrolments/",
     }
 };
 

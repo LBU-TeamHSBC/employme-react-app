@@ -7,6 +7,7 @@ class _LinkAccountDialog extends Component {
     super(props);
     this.state = {
       isLoading: true,
+      error: false,
       vendors: []
     };
   }
@@ -14,9 +15,11 @@ class _LinkAccountDialog extends Component {
   componentDidMount() {
     getVendorList(this.props.token)
       .then(vendors => {
-        this.setState({ vendors });
+        this.setState({ vendors, isLoading: false });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.setState({ isLoading: false, error: true })
+      });
   }
 
   onLinkAccount = vid => {
@@ -25,12 +28,15 @@ class _LinkAccountDialog extends Component {
     createLink(this.props.token, vid, ''+(Math.random() * 10**10))
       .then(res => {
         onDismiss();
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 
   render() {
     const { onDismiss } = this.props;
-    const { vendors } = this.state;
+    const { vendors, isLoading, error } = this.state;
     return (
       <div className="modal" id="link-acct-modal">
         <div className="modal-dialog" role="document">
@@ -40,10 +46,21 @@ class _LinkAccountDialog extends Component {
                 <i className="fa fa-cog"></i> Link New Account</h4>
             </div>
             <div className="modal-body">
-              {vendors.map(vendor => (
-                <button key={vendor.id} onClick={_=>this.onLinkAccount(vendor.id)}>
+              {isLoading && <span>Loading...</span>}
+              {!isLoading && error && <span>Could not update list of vendors</span>}
+              {!isLoading && vendors.map(vendor => (
+                <div key={vendor.id} style={{
+                      lineHeight: '38px',
+                      marginBottom: '5px'
+                    }}>
                   {vendor.name}
-                </button>
+                  <button
+                    className="btn btn-primary"
+                    style={{float: 'right', clear: 'both'}}
+                    onClick={_=>this.onLinkAccount(vendor.id)}>
+                      LINK
+                  </button>
+                </div>
               ))}
             </div>
             <div className="modal-footer">
