@@ -1,14 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getVendorList, createLink } from '../api';
 
 class _LinkAccountDialog extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    this.state = {
+      isLoading: true,
+      vendors: []
+    };
   }
+
+  componentDidMount() {
+    getVendorList(this.props.token)
+      .then(vendors => {
+        this.setState({ vendors });
+      })
+      .catch(err => console.log(err));
+  }
+
+  onLinkAccount = vid => {
+    console.log("Link vid:", vid, " to uid:", this.props.uid);
+    const { onDismiss } = this.props;
+    createLink(this.props.token, vid, ''+(Math.random() * 10**10))
+      .then(res => {
+        onDismiss();
+      });
+  };
 
   render() {
     const { onDismiss } = this.props;
+    const { vendors } = this.state;
     return (
       <div className="modal" id="link-acct-modal">
         <div className="modal-dialog" role="document">
@@ -18,9 +40,11 @@ class _LinkAccountDialog extends Component {
                 <i className="fa fa-cog"></i> Link New Account</h4>
             </div>
             <div className="modal-body">
-              <button>GitHub</button>
-              <hr/>
-              <button>Leeds Beckett University</button>
+              {vendors.map(vendor => (
+                <button key={vendor.id} onClick={_=>this.onLinkAccount(vendor.id)}>
+                  {vendor.name}
+                </button>
+              ))}
             </div>
             <div className="modal-footer">
               <button

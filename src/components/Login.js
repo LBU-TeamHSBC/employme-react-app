@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { saveLoginState } from '../actions';
 import { GoogleLogin } from 'react-google-login';
-import { loginUser } from '../utils';
+import { loginUser } from '../api';
 import { loginStatusCode } from '../apiCodes';
 import config from '../config';
 

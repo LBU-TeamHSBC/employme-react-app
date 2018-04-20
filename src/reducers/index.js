@@ -21,9 +21,17 @@ function saveLoginState(data) {
   localStorage.setItem('email', data.email);
 }
 
+function clearLoginState() {
+  localStorage.removeItem('uid');
+  localStorage.removeItem('token');
+  localStorage.removeItem('username');
+  localStorage.removeItem('email');
+}
+
 const user = (state=getInitialLoginState(), action) => {
   switch(action.type) {
     case 'CLEAR_LOGIN_STATE':
+      clearLoginState();
       return { isLoggedIn: false };
     case 'SET_LOGIN_STATE':
       saveLoginState(action.data);
