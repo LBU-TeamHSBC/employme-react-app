@@ -1,11 +1,13 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import { Login } from './Login';
 
 export function Home(props) {
   return (
     <div className="content">
-      <Link to="/login">---- Login / Sign-up ----</Link>
+      {/* <Link to="/login">---- Login / Sign-up ----</Link> */}
+      <Login />
       <hr />
       <p style={{width: "600px", textAlign: "justify"}}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quam eros,

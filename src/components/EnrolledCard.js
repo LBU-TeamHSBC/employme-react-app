@@ -18,7 +18,7 @@ class _EnrolledCard extends Component {
 
   updateEnrolmentList = _ => {
     const enrolments = [];
-    {/* {{!--
+    /* {{!--
     <label className="search">
         <input className="search-input" placeholder="search...">
         <i className="fa fa-search search-icon"></i>
@@ -30,7 +30,7 @@ class _EnrolledCard extends Component {
         <a href="" className="btn btn-primary btn-sm">
             <i className="fa fa-angle-down"></i>
         </a>
-    </div> --}} */}
+    </div> --}} */
     this.setState({
       enrolments,
       isLoading: false
@@ -48,8 +48,8 @@ class _EnrolledCard extends Component {
   render() {
     const { enrolments } = this.state;
     return (
-      <div className="col-xl-8">
-        <div className="card sameheight-item items" data-exclude="xs,sm,lg" style={{ height: "400px" }}>
+      <div className="col-xl-7">
+        <div className="card sameheight-item items" data-exclude="xs,sm,lg" style={{ height: "300px" }}>
           <div className="card-header bordered">
             <div className="header-block">
               <h3 className="title"> Enrolled Courses </h3>
@@ -80,11 +80,11 @@ class _EnrolledCard extends Component {
                     <span>Stats</span>
                   </div>
                 </div>
-                <div className="item-col item-col-header item-col-date">
+                {/* <div className="item-col item-col-header item-col-date">
                   <div>
                     <span>Date Completed</span>
                   </div>
-                </div>
+                </div> */}
               </div>
             </li>
             {/* {{#each courses as |course|}} {{!-- TODO: COURSE LIST ITEMS --}} {{/each}} */}

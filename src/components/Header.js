@@ -20,6 +20,11 @@ function _Header({ user }) {
       </div>
       <div className="header-block header-block-nav">
         <ul className="nav-profile">
+          <li>
+            <button
+              onClick={console.log}
+              className="btn btn-secondary btn-sm"> Sync </button>
+          </li>
           <li className="notifications new">
             <a href="" data-toggle="dropdown" aria-expanded="false">
               <i className="fa fa-bell-o"></i>

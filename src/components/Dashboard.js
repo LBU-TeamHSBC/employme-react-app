@@ -27,12 +27,12 @@ function _Dashboard(props) {
       <section className="section">
         <div className="row sameheight-container">
           {OverviewCard(dummy_overview_data)}
-          <ScoreCard />
+          <EnrolledCard />
         </div>
       </section>
       <section className="section">
         <div className="row sameheight-container">
-          <EnrolledCard />
+          <ScoreCard />
           <TopSkillsCard />
         </div>
       </section>

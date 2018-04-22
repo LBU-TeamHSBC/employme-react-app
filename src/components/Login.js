@@ -38,14 +38,14 @@ class _Login extends Component {
     }
 
     return (
-      <div className="content">
+      <span>
         <GoogleLogin
           clientId={config.clientId}
           buttonText="Login with Google"
           onSuccess={this.responseGoogle}
           onFailure={this.responseGoogle}/>
         { this.state.login_error && <b>Login failed!</b> }
-      </div>
+      </span>
     );
   }
 }
