@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getTopSkillsList } from '../api';
 
+const Raphael = window.Raphael;
+const Morris = window.Morris;
+
 class _TopSkillsCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: false,
       error: false,
-      skills: []
+      chart: null
     };
   }
 
@@ -16,13 +19,11 @@ class _TopSkillsCard extends Component {
     const { token } = this.props.user;
     getTopSkillsList(token)
       .then(skills => {
-        const topSkills = skills.top_tags.map(tag => (
-          <li key={tag.name}>{tag.name} - {parseInt(tag.score / skills.total * 100, 10)}</li>
-        ));
+        const chart = this.updateChart(skills);
         this.setState({
           isLoading: false,
           error: false,
-          skills: topSkills
+          chart
         });
       })
       .catch(err => {
@@ -31,6 +32,20 @@ class _TopSkillsCard extends Component {
           error: true
         });
       });
+  }
+
+  updateChart = skills => {
+    const data = skills.top_tags.slice(0,3).map(tag => ({
+      label: tag.name,
+      value: parseInt(tag.score / skills.total * 100, 10)
+    }));
+    
+    Morris.Donut({
+      element: 'dashboard-sales-breakdown-chart',
+      data,
+      resize: true,
+      colors: ['#70b02b', '#9ed85f', '#85ce36']
+    })
   }
 
   render() {
@@ -47,7 +62,7 @@ class _TopSkillsCard extends Component {
             <ul>
               {skills}
             </ul>
-            {/* <div className="dashboard-sales-breakdown-chart" id="dashboard-sales-breakdown-chart">___SVG___</div> */}
+            <div className="dashboard-sales-breakdown-chart" id="dashboard-sales-breakdown-chart"></div>
           </div>
         </div>
       </div>
