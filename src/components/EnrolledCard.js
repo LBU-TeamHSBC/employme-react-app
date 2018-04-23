@@ -48,9 +48,9 @@ class _EnrolledCard extends Component {
         course.cprog
       ], key++));
     });
-    enrolments.push(this.createListHeader([
-      "Vendor", "Project Name", "Rating", "Lines of Code"
-    ]));
+    enrolments.push(this.createListHeader(
+      ["Vendor", "Project Name", "Rating", "Lines of Code"],
+      key++));
     projects.forEach(project => {
       enrolments.push(this.createListItem([
         project.vendor,
@@ -62,8 +62,8 @@ class _EnrolledCard extends Component {
     return enrolments;
   };
 
-  createListHeader = ([c1, c2, c3, c4]) => (
-    <li className="item item-list-header">
+  createListHeader = ([c1, c2, c3, c4], key) => (
+    <li className="item item-list-header" key={key}>
       <div className="item-row">
         <div className="item-col item-col-header item-col-sales">
           <div>

@@ -43,6 +43,10 @@ export function getEnrolmentList(token) {
   return apiRequest(config.apiUrl.enrolments, 'GET', token);
 }
 
+export function getTopSkillsList(token) {
+  return apiRequest(config.apiUrl.topSkills, 'GET', token);
+}
+
 export function createLink(token, vid, oauth) {
   const body = { vid, oauth };
   return apiRequest(config.apiUrl.accountLink, 'POST', token, body);

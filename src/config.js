@@ -5,6 +5,7 @@ const config = {
         vendors: "http://localhost:3001/api/vendors/",
         accountLink: "http://localhost:3001/api/link/",
         enrolments: "http://localhost:3001/api/enrolments/",
+        topSkills: "http://localhost:3001/api/topskills/",
     }
 };
 
