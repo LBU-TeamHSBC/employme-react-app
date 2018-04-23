@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getTopSkillsList } from '../api';
 
-const Raphael = window.Raphael;
+// const Raphael = window.Raphael;
 const Morris = window.Morris;
 
 class _TopSkillsCard extends Component {
