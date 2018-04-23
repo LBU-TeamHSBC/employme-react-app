@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { LinkAccountDialog } from './LinkAccountDialog';
+import { getEnrolmentList } from '../api';
 
 class _EnrolledCard extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class _EnrolledCard extends Component {
     this.state = {
       showAddDialog: false,
       isLoading: true,
+      error: false,
       enrolments: []
     };
   }
@@ -17,25 +19,94 @@ class _EnrolledCard extends Component {
   }
 
   updateEnrolmentList = _ => {
-    const enrolments = [];
-    /* {{!--
-    <label className="search">
-        <input className="search-input" placeholder="search...">
-        <i className="fa fa-search search-icon"></i>
-    </label>
-    <div className="pagination">
-        <a href="" className="btn btn-primary btn-sm">
-            <i className="fa fa-angle-up"></i>
-        </a>
-        <a href="" className="btn btn-primary btn-sm">
-            <i className="fa fa-angle-down"></i>
-        </a>
-    </div> --}} */
-    this.setState({
-      enrolments,
-      isLoading: false
+    getEnrolmentList(this.props.user.token)
+    .then(data => {
+      const enrolments = this.buildEnrolments(data);
+      this.setState({
+        enrolments,
+        isLoading: false,
+        error: false,
+      });
+    })
+    .catch(err => {
+      this.setState({
+        isLoading: false,
+        error: true,
+      });
     });
   };
+
+  buildEnrolments = data => {
+    const enrolments = [];
+    const { courses, projects } = data;
+    var key = 0;
+    courses.forEach(course => {
+      enrolments.push(this.createListItem([
+        course.name,
+        course.course_module,
+        course.cmprog,
+        course.cprog
+      ], key++));
+    });
+    enrolments.push(this.createListHeader([
+      "Vendor", "Project Name", "Rating", "Lines of Code"
+    ]));
+    projects.forEach(project => {
+      enrolments.push(this.createListItem([
+        project.vendor,
+        project.name,
+        project.rating,
+        project.lines_of_code,
+      ], key++));
+    });
+    return enrolments;
+  };
+
+  createListHeader = ([c1, c2, c3, c4]) => (
+    <li className="item item-list-header">
+      <div className="item-row">
+        <div className="item-col item-col-header item-col-sales">
+          <div>
+            <span>{c1}</span>
+          </div>
+        </div>
+        <div className="item-col item-col-header item-col-title">
+          <div>
+            <span>{c2}</span>
+          </div>
+        </div>
+        <div className="item-col item-col-header item-col-date">
+          <div>
+            <span>{c3}</span>
+          </div>
+        </div>
+        <div className="item-col item-col-header item-col-date">
+          <div className="no-overflow">
+            <span>{c4}</span>
+          </div>
+        </div>
+      </div>
+    </li>
+  );
+
+  createListItem = ([c1, c2, c3, c4], key) => (
+    <li className="item" key={key}>
+      <div className="item-row">
+        <div className="item-col item-col-sales">
+          <div> {c1} </div>
+        </div>
+        <div className="item-col item-col-title">
+          <div> {c2} </div>
+        </div>
+        <div className="item-col item-col-date">
+          <div> {c3} </div>
+        </div>
+        <div className="item-col item-col-date">
+          <div> {c4} </div>
+        </div>
+      </div>
+    </li>
+  );
 
   linkNewAccount = _ => {
     this.setState({ showAddDialog: true });
@@ -49,45 +120,43 @@ class _EnrolledCard extends Component {
     const { enrolments } = this.state;
     return (
       <div className="col-xl-7">
-        <div className="card sameheight-item items" data-exclude="xs,sm,lg" style={{ height: "300px" }}>
+        <div className="card sameheight-item items" data-exclude="xs,sm,lg" style={{ height: "340px" }}>
           <div className="card-header bordered">
             <div className="header-block">
-              <h3 className="title"> Enrolled Courses </h3>
+              <h3 className="title"> Enrolled Courses &amp; Projects </h3>
             </div>
             <div className="header-block pull-right">
               <button
                 onClick={this.linkNewAccount}
                 className="btn btn-primary btn-sm"> Add new </button>
-                {enrolments}
             </div>
           </div>
-          <ul className="item-list striped">
-            <li className="item item-list-header">
+          <ul className="item-list striped" style={{ overflowY: "scroll" }}>
+          <li className="item item-list-header">
               <div className="item-row">
-                <div className="item-col item-col-header fixed item-col-img xs"></div>
-                <div className="item-col item-col-header item-col-title">
-                  <div>
-                    <span>Name</span>
-                  </div>
-                </div>
                 <div className="item-col item-col-header item-col-sales">
                   <div>
-                    <span>Completed</span>
+                    <span>Vendor</span>
                   </div>
                 </div>
-                <div className="item-col item-col-header item-col-stats">
-                  <div className="no-overflow">
-                    <span>Stats</span>
-                  </div>
-                </div>
-                {/* <div className="item-col item-col-header item-col-date">
+                <div className="item-col item-col-header item-col-title">
                   <div>
-                    <span>Date Completed</span>
+                    <span>Course</span>
                   </div>
-                </div> */}
+                </div>
+                <div className="item-col item-col-header item-col-date">
+                  <div>
+                    <span>% Module</span>
+                  </div>
+                </div>
+                <div className="item-col item-col-header item-col-date">
+                  <div className="no-overflow">
+                    <span>% Course</span>
+                  </div>
+                </div>
               </div>
             </li>
-            {/* {{#each courses as |course|}} {{!-- TODO: COURSE LIST ITEMS --}} {{/each}} */}
+            {enrolments}
           </ul>
         </div>
         {this.state.showAddDialog && <LinkAccountDialog onDismiss={this.dismissLinkAccountDialog} />}

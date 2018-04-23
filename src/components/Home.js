@@ -6,7 +6,6 @@ import { Login } from './Login';
 export function Home(props) {
   return (
     <div className="content">
-      {/* <Link to="/login">---- Login / Sign-up ----</Link> */}
       <Login />
       <hr />
       <p style={{width: "600px", textAlign: "justify"}}>

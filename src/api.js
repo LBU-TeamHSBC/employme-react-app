@@ -39,6 +39,10 @@ export function getVendorList(token) {
   return apiRequest(config.apiUrl.vendors, 'GET', token);
 }
 
+export function getEnrolmentList(token) {
+  return apiRequest(config.apiUrl.enrolments, 'GET', token);
+}
+
 export function createLink(token, vid, oauth) {
   const body = { vid, oauth };
   return apiRequest(config.apiUrl.accountLink, 'POST', token, body);
